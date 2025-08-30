@@ -1,6 +1,6 @@
 
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.30;
 
 /**
  * @title KipuBank
@@ -50,6 +50,37 @@ contract KipuBank {
      * @param balance El balance actual del usuario.
      */
     event GetBalance(address indexed user, uint256 balance);
+
+
+    // Errores Personalizados
+
+    /** 
+     * @notice Error que se revierte si un depósito excede el límite global del banco.
+     * @param bankCap El límite global de depósitos del banco.
+     * @param currentBalance El balance actual del banco.
+     */
+    error BankCapExceeded(uint256 bankCap, uint256 currentBalance);
+
+    /**
+     * @notice Error que se revierte si un retiro excede el umbral por transacción.
+     * @param withdrawalThreshold El umbral máximo de retiro por transacción.
+     * @param amount La cantidad que el usuario intentó retirar.
+     */
+    error WithdrawalThresholdExceeded(uint256 withdrawalThreshold, uint256 amount);
+
+    /** 
+     * @notice Error que se revierte si un usuario intenta retirar más de lo que tiene.
+     * @param balance El balance actual del usuario.
+     * @param amount La cantidad que el usuario intentó retirar.
+     */
+    error InsufficientBalance(uint256 balance, uint256 amount);
+    
+    /**
+     * @notice Error que se revierte si la transferencia de ETH falla.
+     * @param user La dirección del usuario.
+     * @param amount La cantidad que se intentó transferir.
+     */
+    error TransferFailed(address user, uint256 amount);
 
  
     /// Constructor
