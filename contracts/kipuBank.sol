@@ -27,8 +27,33 @@ contract KipuBank {
     /// @notice Contador total de retiros realizados en el contrato.
     uint256 public withdrawalCount;
 
+
+    /// Eventos
+
+    /**
+     * @notice Se emite cuando un usuario deposita ETH exitosamente.
+     * @param user La dirección del usuario que realizó el depósito.
+     * @param amount La cantidad de ETH depositada.
+     */
+    event Deposit(address indexed user, uint256 amount);
+
+    /**
+     * @notice Se emite cuando un usuario retira ETH exitosamente.
+     * @param user La dirección del usuario que realizó el retiro.
+     * @param amount La cantidad de ETH retirada.
+     */
+    event Withdrawal(address indexed user, uint256 amount);
+
+    /**
+     * @notice Se emite cuando se consulta el balance de un usuario.
+     * @param user La dirección del usuario.
+     * @param balance El balance actual del usuario.
+     */
+    event GetBalance(address indexed user, uint256 balance);
+
  
     /// Constructor
+
     /**
      * @notice Inicializa el contrato con los límites de retiro y depósito.
      * @param _withdrawalThreshold El umbral máximo para retiros por transacción.
