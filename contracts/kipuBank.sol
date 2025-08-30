@@ -27,6 +27,16 @@ contract KipuBank {
     /// @notice Contador total de retiros realizados en el contrato.
     uint256 public withdrawalCount;
 
-
+ 
+    /// Constructor
+    /**
+     * @notice Inicializa el contrato con los límites de retiro y depósito.
+     * @param _withdrawalThreshold El umbral máximo para retiros por transacción.
+     * @param _bankCap El límite global de depósitos para el contrato.
+     */
+    constructor(uint256 _withdrawalThreshold, uint256 _bankCap) {
+        withdrawalThreshold = _withdrawalThreshold;
+        bankCap = _bankCap;
+    }
 
 }
